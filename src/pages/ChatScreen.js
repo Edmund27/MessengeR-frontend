@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Messages from "../components/Messages";
+import ChatInput from "../components/ChatInput";
 
 
 export default function ChatScreen() {
-
+    const [messageInput, setMessageInput] = useState('')
     const [messagesState, setMessagesState] = useState([
         //seed messages
         {
@@ -20,12 +21,28 @@ export default function ChatScreen() {
         }
     ]);
 
+    function sendMessage(event) {
+        event.preventDefault();
+        setMessagesState([...messagesState,
+        {
+            id: messagesState.length + 1,
+            userName: 'Edmund',
+            message: messageInput,
+            from: 'me',
+        }])
+    }
 
     return (
         <div>
             <h4>MessengeR</h4>
             <Messages messages={messagesState} />
-            <p>here you type a message</p>
+            <form onSubmit={sendMessage}>
+                <input
+                    type="text"
+                    value={messageInput}
+                    onChange={event => setMessageInput(event.target.value)}
+                    required />
+            </form>
         </div>
     );
 }
