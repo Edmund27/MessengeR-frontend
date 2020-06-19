@@ -11,7 +11,7 @@ export default function Messages(props) {
                         key={id}
                         userName={message.userName}
                         message={message.message}
-                        myMessage={message.myMessage}
+                        from={message.from}
                     />
                 )
             })

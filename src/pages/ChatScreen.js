@@ -10,13 +10,13 @@ export default function ChatScreen() {
             id: 1,
             userName: 'Michael',
             message: 'Hey, how are you',
-            myMessage: false
+            from: 'him'
         },
         {
             id: 2,
             userName: 'Edmund',
             message: 'I am good, what about you?',
-            myMessage: true
+            from: 'me'
         }
     ]);
 
