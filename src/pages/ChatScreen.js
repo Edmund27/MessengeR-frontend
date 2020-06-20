@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import Messages from "../components/Messages";
-import ChatInput from "../components/ChatInput";
+//import ChatInput from "../components/ChatInput";
+import io from "socket.io-client";
+
 
 
 export default function ChatScreen() {
+    const socket = io(`http://localhost:4000`);
+    //console.log("IO:", io)
     const [messageInput, setMessageInput] = useState('')
     const [messagesState, setMessagesState] = useState([
         //seed messages
