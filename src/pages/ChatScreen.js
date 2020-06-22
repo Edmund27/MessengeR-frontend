@@ -6,8 +6,7 @@ import io from "socket.io-client";
 
 
 export default function ChatScreen() {
-    const socket = io(`http://localhost:4000`);
-    //console.log("IO:", io)
+    const socket = io.connect(`http://localhost:4000`);
     const [messageInput, setMessageInput] = useState('')
     const [messagesState, setMessagesState] = useState([
         //seed messages
@@ -27,14 +26,17 @@ export default function ChatScreen() {
 
     function sendMessage(event) {
         event.preventDefault();
+        socket.emit('chat', { userName: 'Edmund', message: messageInput })
+    }
+
+    socket.on('chat', data => {
         setMessagesState([...messagesState,
         {
-            id: messagesState.length + 1,
-            userName: 'Edmund',
-            message: messageInput,
+            userName: data.userName,
+            message: data.message,
             from: 'me',
         }])
-    }
+    })
 
     return (
         <div>
