@@ -3,11 +3,11 @@
     font-family: Helvetica, Arial, sans-serif;
   }
 
-.message.me .userName {
+.message.me .username {
     display: none;
   }
 
-.message.him .userName {
+.message.him .username {
     font-weight: bold;
     font-size: 0.4rem;
     color: black;

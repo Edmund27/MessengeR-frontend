@@ -9,9 +9,9 @@ export default function Messages(props) {
                 return (
                     <MessageInstance
                         key={id}
-                        userName={message.userName}
+                        username={message.username}
                         message={message.message}
-                        from={message.from}
+                        received={message.received}
                     />
                 )
             })
