@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Messages from "../components/Messages";
-import { appendMessage, setUsername, setClientId } from '../store/user/actions.js';
+import { setUsername, setClientId } from '../store/user/actions.js';
+import { appendMessage } from '../store/chat/actions.js';
 import { useDispatch, useSelector } from "react-redux";
 import store from '../store';
 import { selectUsername } from "../store/user/selectors";
@@ -11,8 +12,6 @@ const socket = io.connect(`http://localhost:4000`);
 socket.on('chat', (data) => {
     store.dispatch(appendMessage(data));
 });
-
-
 
 
 export default function ChatScreen() {
