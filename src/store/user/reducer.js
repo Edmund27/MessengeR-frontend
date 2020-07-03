@@ -1,7 +1,7 @@
 import { APPEND_MESSAGE, SET_USERNAME, SET_CLIENT_ID } from "./actions";
 
 const initialState = {
-    messages: [{ username: 'edmund', message: 'hey', clientId: 5 }],
+    messages: [],
     username: null,
     clientId: null
 };

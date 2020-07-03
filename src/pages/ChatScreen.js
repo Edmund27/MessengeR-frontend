@@ -4,6 +4,7 @@ import { appendMessage, setUsername, setClientId } from '../store/user/actions.j
 import { useDispatch, useSelector } from "react-redux";
 import store from '../store';
 import { selectUsername } from "../store/user/selectors";
+import '../styles/general.css'
 
 import io from "socket.io-client";
 const socket = io.connect(`http://localhost:4000`);
@@ -35,20 +36,24 @@ export default function ChatScreen() {
     }
 
 
+
+
     return (
         <div>
-            <h4>MessengeR</h4>
             <Messages />
-            <form onSubmit={submitMessage}>
-                <input
-                    type="text"
-                    value={messageInput}
-                    onChange={event => setMessageInput(event.target.value)}
-                    required />
-            </form>
-            <button onClick={submitMessage} class="Button1" type="button">
-                Send
+            <p className='container'>
+                <form onSubmit={submitMessage}>
+                    <input
+                        type="text"
+                        value={messageInput}
+                        onChange={event => setMessageInput(event.target.value)}
+                        required />
+                </form >
+                <button onClick={submitMessage} class="Button1" type="button">
+                    Send
                 </button>
+            </p>
+
         </div>
     );
 }

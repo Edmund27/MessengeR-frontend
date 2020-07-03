@@ -2,6 +2,7 @@ import React from "react";
 import MessageInstance from "./MessageInstance"
 import { useSelector } from "react-redux";
 import { selectMessages, selectClientId } from "../store/user/selectors";
+require('../styles/general.css');
 
 export default function Messages(props) {
     const messages = useSelector(selectMessages);
@@ -11,7 +12,7 @@ export default function Messages(props) {
 
 
     return (
-        <div>
+        <div className='homeContainer'>
             {messages.map((message, id) => {
                 if (clientId === message.clientId) {
                     received = false

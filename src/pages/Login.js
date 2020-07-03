@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { setUsername } from '../store/user/actions.js';
 import { useDispatch } from "react-redux";
+require('../styles/general.css');
 
 
 export default function Login() {
@@ -16,7 +17,7 @@ export default function Login() {
 
 
     return (
-        <div>
+        <div className='container'>
             <h4>Your nickname</h4>
             <form >
                 <input

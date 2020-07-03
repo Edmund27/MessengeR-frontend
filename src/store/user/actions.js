@@ -26,3 +26,10 @@ export const setClientId = (clientId) => {
         payload: clientId
     }
 }
+
+export const setUser = (clientId) => {
+    return {
+        type: SET_CLIENT_ID,
+        payload: clientId
+    }
+}
