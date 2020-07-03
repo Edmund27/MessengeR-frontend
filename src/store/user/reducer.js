@@ -1,17 +1,18 @@
-import { APPEND_MESSAGE, SET_USERNAME, SET_CLIENT_ID } from "./actions";
+import { APPEND_MESSAGE, SET_USER, SET_CLIENT_ID } from "./actions";
 
 const initialState = {
     messages: [],
-    username: null,
+    user: null,
     clientId: null
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case SET_USERNAME:
+        case SET_USER:
+            console.log(action.payload)
             return {
                 ...state,
-                username: action.payload
+                user: action.payload.name
             }
         case APPEND_MESSAGE:
             return {

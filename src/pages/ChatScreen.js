@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Messages from "../components/Messages";
-import { appendMessage, setUsername, setClientId } from '../store/user/actions.js';
+import { appendMessage, setClientId } from '../store/user/actions.js';
 import { useDispatch, useSelector } from "react-redux";
 import store from '../store';
-import { selectUsername } from "../store/user/selectors";
+import { selectUser } from "../store/user/selectors";
 import '../styles/general.css'
 
 import io from "socket.io-client";
@@ -18,7 +18,7 @@ socket.on('chat', (data) => {
 
 export default function ChatScreen() {
     const [messageInput, setMessageInput] = useState('')
-    const username = useSelector(selectUsername);
+    const username = useSelector(selectUser);
     const dispatch = useDispatch();
 
     dispatch(setClientId(socket.id))
