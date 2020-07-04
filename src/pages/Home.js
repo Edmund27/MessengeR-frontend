@@ -1,12 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import socket from '../socket'
 import { selectUsers } from "../store/users/selectors";
+import { selectUser } from "../store/user/selectors";
 import { useSelector } from "react-redux";
 require('../styles/general.css');
 
+
+
 export default function Home() {
-    const users = useSelector(selectUsers);
+    const users = useSelector(selectUsers)
+    const currentUser = useSelector(selectUser);
+
+    // const openChat = (receiver) => {
+    //     console.log('hello', receiver)
+    // }
+
+    // const openChat(receiver) {
+    //     console.log("GOING TO TEXT USER:", receiver)
+    // }
+
+    const openChat = (receiver) => {
+        const usersObject = {
+            user: currentUser,
+            receiver: receiver
+        }
+        console.log('messagesSelector:', usersObject)
+        socket.emit('chat', usersObject)
+    }
+
 
     return (
         <div>
@@ -14,8 +36,13 @@ export default function Home() {
                 return (
                     <p key={user.id}>
                         <Link to="/chat-screen">
-                            {user.name}
+                            <button onClick={() => openChat(user)} class="Button1" type="button">
+                                {user.name}
+                            </button>
                         </Link>
+                        {/* <Link to="/chat-screen">
+                            {user.name}
+                        </Link> */}
                     </p>
                 )
             })}

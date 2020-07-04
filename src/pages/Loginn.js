@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { setUsername, setUser } from '../store/user/actions.js';
-import { setPassword } from '../store/user/actions.js';
-import { useDispatch } from "react-redux";
 import socket from '../socket'
 
 require('../styles/general.css');
@@ -12,7 +9,6 @@ require('../styles/general.css');
 export default function Login() {
     const [nameInput, setNameInput] = useState('')
     const [passwordInput, setPasswordInput] = useState('')
-    const dispatch = useDispatch();
 
     const submitUser = (e) => {
         console.log('messagesSelector:', nameInput, passwordInput)
@@ -21,6 +17,7 @@ export default function Login() {
             password: passwordInput
         }
         socket.emit('newUser', credentials)
+        //socket.emit('ongoingChats', nameInput)
         // dispatch(setUser({
         //     username: usernameInput,
         //     password: passwordInput

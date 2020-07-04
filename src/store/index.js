@@ -5,6 +5,7 @@ import reducer from "./rootReducer";
 import socket from '../socket'
 import { setUser } from "./user/actions"
 import { setUsers } from "./users/actions"
+import { setPastMessages, setChats } from "./chats/actions"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -12,15 +13,27 @@ const enhancer = composeEnhancers(applyMiddleware(ReduxThunk));
 
 const store = createStore(reducer, enhancer);
 
-socket.on("userCreated", repsonse => {
-    const { user, users } = repsonse
+socket.on("userCreated", response => {
+    console.log("RESPONSE:", response)
+    const { user, users } = response
     store.dispatch(setUser(user))
+    store.dispatch(setUsers(users))
     //store.dispatch(setUsers(users))
 })
 
-socket.on("sendUsers", repsonse => {
-    const users = repsonse
-    store.dispatch(setUsers(users))
+// socket.on("sendUsers", response => {
+//     const users = response
+// })
+
+socket.on("chatsFound", response => {
+    const chats = response
+    store.dispatch(setChats(chats))
+    //store.dispatch(setUsers(users))
+})
+
+socket.on("pastMessages", response => {
+    store.dispatch(setPastMessages(response))
+    //store.dispatch(setUsers(users))
 })
 
 
