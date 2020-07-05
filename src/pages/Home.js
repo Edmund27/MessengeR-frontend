@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import socket from '../socket'
 import { selectUsers } from "../store/users/selectors";
 import { selectUser } from "../store/user/selectors";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setSenderName } from "../store/chats/actions";
 require('../styles/general.css');
 
 
 
 export default function Home() {
+    const dispatch = useDispatch();
     const users = useSelector(selectUsers)
     const currentUser = useSelector(selectUser);
 
@@ -27,6 +29,7 @@ export default function Home() {
         }
         console.log('messagesSelector:', usersObject)
         socket.emit('chat', usersObject)
+        dispatch(setSenderName(receiver));
     }
 
 

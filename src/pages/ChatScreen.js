@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectMessages } from "../store/chats/selectors";
+import { selectUser } from "../store/user/selectors";
+import { selectSender } from "../store/chats/selectors";
 import '../styles/general.css'
 import Messages from "../components/Messages"
+import socket from "../socket"
 
 // import io from "socket.io-client";
 // const socket = io.connect(`http://localhost:4000`);
@@ -17,20 +20,20 @@ import Messages from "../components/Messages"
 export default function ChatScreen() {
     const [messageInput, setMessageInput] = useState('')
     const allMessages = useSelector(selectMessages);
+    const user = useSelector(selectUser);
+    const receiver = useSelector(selectSender);
 
 
     const submitMessage = (e) => {
         e.preventDefault()
-        console.log("ALL MESSAGES", allMessages)
-
-        // console.log('messagesSelector:', socket.id)
-        // const message = {
-        //     username: username,
-        //     message: messageInput,
-        //     clientId: socket.id
-        // }
-        // setMessageInput('')
-        // socket.emit('chat', message);
+        const message = {
+            user: user,
+            receiver: receiver,
+            text: messageInput,
+        }
+        setMessageInput('')
+        socket.emit('newMessage', message);
+        console.log("EMITTED MESSAGE", message)
     }
 
 

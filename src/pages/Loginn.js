@@ -11,6 +11,7 @@ export default function Login() {
     const [passwordInput, setPasswordInput] = useState('')
 
     const submitUser = (e) => {
+        //e.preventDefault();
         console.log('messagesSelector:', nameInput, passwordInput)
         const credentials = {
             name: nameInput,

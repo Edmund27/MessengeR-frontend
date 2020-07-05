@@ -5,7 +5,7 @@ import reducer from "./rootReducer";
 import socket from '../socket'
 import { setUser } from "./user/actions"
 import { setUsers } from "./users/actions"
-import { setPastMessages, setChats } from "./chats/actions"
+import { setPastMessages, setChats, setNewMessage } from "./chats/actions"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -35,6 +35,12 @@ socket.on("pastMessages", response => {
     store.dispatch(setPastMessages(response))
     //store.dispatch(setUsers(users))
 })
+
+socket.on("incomingMessage", response => {
+    store.dispatch(setNewMessage(response))
+    //store.dispatch(setUsers(users))
+})
+
 
 
 export default store;
