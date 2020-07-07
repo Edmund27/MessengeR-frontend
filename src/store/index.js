@@ -16,9 +16,14 @@ const store = createStore(reducer, enhancer);
 socket.on("userCreated", response => {
     console.log("RESPONSE:", response)
     const { user, users } = response
-    store.dispatch(setUser(user))
+    //store.dispatch(setUser(user))
     store.dispatch(setUsers(users))
     //store.dispatch(setUsers(users))
+})
+
+socket.on("usersData", response => {
+    console.log("RESPONSE:", response)
+    store.dispatch(setUsers(response))
 })
 
 // socket.on("sendUsers", response => {

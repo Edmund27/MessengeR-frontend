@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import socket from '../socket'
 import { selectUsers } from "../store/users/selectors";
@@ -8,11 +8,13 @@ import { setSenderName } from "../store/chats/actions";
 require('../styles/general.css');
 
 
-
 export default function Home() {
-    const dispatch = useDispatch();
     const users = useSelector(selectUsers)
+    const dispatch = useDispatch();
     const currentUser = useSelector(selectUser);
+
+
+
 
     // const openChat = (receiver) => {
     //     console.log('hello', receiver)
