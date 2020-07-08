@@ -1,6 +1,13 @@
+.message-time {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 0.4rem;
+  color: darkgray
+}
+
 .message {
     margin-bottom: 20px;
     font-family: Helvetica, Arial, sans-serif;
+    text-align: left;
   }
 
 .message.me .username {

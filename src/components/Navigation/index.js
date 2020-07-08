@@ -17,8 +17,11 @@ export default function Navigation() {
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand as={NavLink} to="/">
-                MessengeR
-      </Navbar.Brand>
+                <img
+                    src="https://i.imgur.com/nQpDXxK.png"
+                    width="100" height="100">
+                </img>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav style={{ width: "100%" }} fill>

@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import socket from '../socket'
 import { selectUsers } from "../store/users/selectors";
 import { selectUser } from "../store/user/selectors";
@@ -36,19 +38,39 @@ export default function Home() {
 
 
     return (
-        <div>
+        <div
+            className="card-deck"
+            style={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}
+        >
             {users.map((user) => {
                 return (
-                    <p key={user.id}>
-                        <Link to="/chat-screen">
-                            <button onClick={() => openChat(user)} class="Button1" type="button">
-                                {user.name}
-                            </button>
-                        </Link>
-                        {/* <Link to="/chat-screen">
-                            {user.name}
-                        </Link> */}
-                    </p>
+                    <div key={user.id}>
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img
+                                variant="top"
+                                src="https://docs.atlassian.com/aui/8.6.0/docs/images/avatar-person.svg"
+                                width="100" height="100"
+                            />
+
+                            <Card.Body>
+                                <Card.Title>{user.name}</Card.Title>
+                                <Link to="/chat-screen">
+                                    <Button onClick={() => openChat(user)} variant="primary">Open Chat</Button>
+                                </Link>
+                            </Card.Body>
+
+                        </Card>
+                    </div>
+                    // <p key={user.id}>
+                    //     <Link to="/chat-screen">
+                    //         <button onClick={() => openChat(user)} className="Button1" type="button">
+                    //             {user.name}
+                    //         </button>
+                    //     </Link>
+                    //     {/* <Link to="/chat-screen">
+                    //         {user.name}
+                    //     </Link> */}
+                    // </p>
                 )
             })}
         </div>

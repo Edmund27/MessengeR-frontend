@@ -1,4 +1,4 @@
-import { SET_CHATS, SET_PAST_MESSAGES, SET_SENDER_NAME, SET_NEW_MESSAGE } from "./actions";
+import { CLEAR_CHAT, SET_CHATS, SET_PAST_MESSAGES, SET_SENDER_NAME, SET_NEW_MESSAGE } from "./actions";
 
 const initialState = {
     messages: [],
@@ -31,6 +31,9 @@ export default (state = initialState, action) => {
                 ...state,
                 messages: [...state.messages, action.payload]
             }
+        case CLEAR_CHAT:
+            console.log('CLEARING CHAT', action.payload)
+            return action.payload
         default:
             return state;
     }

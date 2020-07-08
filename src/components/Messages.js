@@ -5,6 +5,7 @@ import { selectMessages } from "../store/chats/selectors";
 import { selectUser } from "../store/user/selectors";
 import { selectSender } from "../store/chats/selectors";
 require('../styles/general.css');
+require('../styles/chat.css');
 
 export default function Messages() {
     const messages = useSelector(selectMessages);
@@ -18,7 +19,7 @@ export default function Messages() {
 
 
     return (
-        <div className='homeContainer'>
+        <div className='messages'>
             {messages.map((message, id) => {
                 if (userId === message.senderId) {
                     received = false
@@ -27,12 +28,13 @@ export default function Messages() {
                     received = true
                     senderName = sender.name
                 }
-
+                //console.log("TIME", message)
                 return (
                     <MessageInstance
                         key={id}
                         username={senderName}
                         message={message.text}
+                        time={message.createdAt}
                         received={received}
                     />
                 )

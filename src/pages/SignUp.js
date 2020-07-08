@@ -33,7 +33,7 @@ export default function SignUp() {
     return (
         <Container>
             <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-                <h1 className="mt-5 mb-5">Signup</h1>
+                <h2 className="mt-5 mb-5">Signup</h2>
                 <Form.Group controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
                     <Form.Control
@@ -53,9 +53,7 @@ export default function SignUp() {
                         placeholder="Enter email"
                         required
                     />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-          </Form.Text>
+
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
@@ -73,7 +71,7 @@ export default function SignUp() {
                         Sign up
           </Button>
                 </Form.Group>
-                <Link to="/login">Click here to log in</Link>
+                <Link to="/">Click here to log in</Link>
             </Form>
         </Container>
     );
