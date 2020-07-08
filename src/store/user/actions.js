@@ -1,7 +1,6 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
 import { selectToken } from "./selectors";
-import { selectEmail } from "../user/selectors";
 import {
     appLoading,
     appDoneLoading,
@@ -10,6 +9,7 @@ import {
 } from "../appState/actions";
 import socket from '../../socket'
 
+import { clearChat } from "../chats/actions";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
@@ -85,12 +85,15 @@ export const getUserWithStoredToken = () => {
     return async (dispatch, getState) => {
         // get token from the state
         const token = selectToken(getState());
-        console.log(email)
 
         // if we have no token, stop
-        if (token === null) return;
+        if (token === null) {
+            return;
+        }
+
 
         dispatch(appLoading());
+        dispatch(clearChat());
         try {
             // if we do have a token,
             // check wether it is still valid or if it is expired
@@ -100,6 +103,9 @@ export const getUserWithStoredToken = () => {
 
             // token is still valid
             dispatch(tokenStillValid(response.data));
+            socket.emit('userLogin', response.data.email)
+            //console.log("IS IT GONNA EMIT?", response.data)
+
             dispatch(appDoneLoading());
         } catch (error) {
             if (error.response) {

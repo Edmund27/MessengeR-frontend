@@ -4,12 +4,13 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import ChatScreen from "./pages/ChatScreen";
 import Loginn from "./pages/Loginn";
 import Home from "./pages/Home";
-import AddFriend from "./pages/AddFriend";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { selectToken } from "./store/user/selectors";
 import { selectEmail } from "./store/user/selectors";
 import socket from './socket'
+import Card from "react-bootstrap/Card";
+import './styles/general.css';
 
 
 import Navigation from "./components/Navigation";
@@ -22,7 +23,6 @@ import { getUserWithStoredToken } from "./store/user/actions";
 function App() {
   const token = useSelector(selectToken);
   const email = useSelector(selectEmail)
-  console.log(email)
 
   const history = useHistory();
 
@@ -34,8 +34,15 @@ function App() {
   }, [token, history]);
 
 
-  const loginCheck = !token ? null : <Navigation />
+  const loggedIn = !token ? null : <Navigation />
 
+  const loggedOut = token ? null :
+    <div className="logo">
+      <img
+        src="https://i.imgur.com/nQpDXxK.png"
+        width="190" height="100">
+      </img>
+    </div>
   const dispatch = useDispatch();
   const isLoading = useSelector(selectAppLoading);
 
@@ -47,7 +54,10 @@ function App() {
 
   return (
     <div >
-      {loginCheck}
+      <div className="header">
+        {loggedIn}
+        {loggedOut}
+      </div>
       {/* <Navigation /> */}
       {isLoading ? <Loading /> : null}
       <Switch>

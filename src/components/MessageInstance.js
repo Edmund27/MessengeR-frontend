@@ -7,6 +7,7 @@ export default function MessageInstance(props) {
     let from
     props.received ? from = 'him' : from = 'me'
     //console.log('From who?', from)
+    const timeArray = props.time.split(/[ T.:|]+/)
 
     return (
         <div className={`message ${from}`}>
@@ -15,6 +16,9 @@ export default function MessageInstance(props) {
             </div>
             <div className={`message-body ${from}`}>
                 {props.message}
+                <div className="message-time" >
+                    {timeArray[1] + ":" + timeArray[2]}
+                </div>
             </div>
         </div>
     );
