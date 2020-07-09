@@ -70,7 +70,6 @@ export default function Profile() {
         <Container>
             <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
                 <h1 className="mt-5 mb-5"> {`Welcome ${currentUser.name}`}</h1>
-                <h2 className="mt-5 mb-5">Here you can edit your profile</h2>
                 <img
                     src={currentUser.imageUrl}
                     alt="alternatetext"

@@ -6,14 +6,12 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { selectToken } from "./store/user/selectors";
-//import './styles/general.css';
 import MessageBox from "./components/MessageBox";
 import Profile from "./pages/Profile";
 
 
 import Navigation from "./components/Navigation";
 import Loading from "./components/Loading";
-//import MessageBox from "./components/MessageBox";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
@@ -58,7 +56,6 @@ function App() {
         {loggedOut}
       </div>
       <MessageBox />
-      {/* <Navigation /> */}
       {isLoading ? <Loading /> : null}
       <Switch>
         <Route exact path="/" component={Login} />

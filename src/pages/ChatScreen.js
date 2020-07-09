@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 import { selectMessages } from "../store/chats/selectors";
 import { selectUser } from "../store/user/selectors";
 import { selectSender } from "../store/chats/selectors";
-//import '../styles/general.css'
 import '../styles/chat.css'
-//import '../styles/chat.css'
 import Messages from "../components/Messages"
 import socket from "../socket"
 
@@ -14,15 +12,6 @@ import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-
-// import io from "socket.io-client";
-// const socket = io.connect(`http://localhost:4000`);
-
-// socket.on('chat', (data) => {
-//     store.dispatch(appendMessage(data));
-// });
-
-
 
 
 export default function ChatScreen() {
