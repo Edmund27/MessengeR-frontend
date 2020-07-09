@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { selectMessages } from "../store/chats/selectors";
 import { selectUser } from "../store/user/selectors";
-import { selectUsers } from "../store/users/selectors";
 import { selectSender } from "../store/chats/selectors";
 //import '../styles/general.css'
 import '../styles/chat.css'
@@ -31,7 +30,6 @@ export default function ChatScreen() {
     const allMessages = useSelector(selectMessages);
     const user = useSelector(selectUser);
     const receiver = useSelector(selectSender);
-    const allUsers = useSelector(selectUsers);
 
     const messagesEndRef = useRef(null)
 
@@ -50,10 +48,8 @@ export default function ChatScreen() {
         }
         setMessageInput('')
         socket.emit('newMessage', message);
-        //console.log("EMITTED MESSAGE", message)
     }
 
-    console.log("THIS IS THE RECEVIVER", receiver)
     return (
         <div >
             <Card className="nameCard">
@@ -70,13 +66,6 @@ export default function ChatScreen() {
             <Messages />
 
             <div className='textInput'>
-                {/* <form onSubmit={submitMessage}>
-                    <input
-                        type="text"
-                        value={messageInput}
-                        onChange={event => setMessageInput(event.target.value)}
-                        required />
-                </form > */}
                 <form className="messageInput" onSubmit={submitMessage}>
                     <InputGroup className="mb-3">
                         <FormControl
@@ -93,9 +82,6 @@ export default function ChatScreen() {
                         </InputGroup.Append>
                     </InputGroup>
                 </form>
-                {/* <button onClick={submitMessage} className="Button1" type="button">
-                    Send
-                </button> */}
             </div>
             <div ref={messagesEndRef} />
 
