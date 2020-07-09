@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { selectMessages } from "../store/chats/selectors";
 import { selectUser } from "../store/user/selectors";
+import { selectUsers } from "../store/users/selectors";
 import { selectSender } from "../store/chats/selectors";
-import '../styles/general.css'
+//import '../styles/general.css'
+import '../styles/chat.css'
 //import '../styles/chat.css'
 import Messages from "../components/Messages"
 import socket from "../socket"
@@ -29,7 +31,15 @@ export default function ChatScreen() {
     const allMessages = useSelector(selectMessages);
     const user = useSelector(selectUser);
     const receiver = useSelector(selectSender);
+    const allUsers = useSelector(selectUsers);
 
+    const messagesEndRef = useRef(null)
+
+    const scrollToBottom = () => {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+
+    useEffect(scrollToBottom, [allMessages]);
 
     const submitMessage = (e) => {
         e.preventDefault()
@@ -40,18 +50,16 @@ export default function ChatScreen() {
         }
         setMessageInput('')
         socket.emit('newMessage', message);
-        console.log("EMITTED MESSAGE", message)
+        //console.log("EMITTED MESSAGE", message)
     }
 
-
-
-
+    console.log("THIS IS THE RECEVIVER", receiver)
     return (
         <div >
             <Card className="nameCard">
                 <Card.Body>
                     <img
-                        src="https://docs.atlassian.com/aui/8.6.0/docs/images/avatar-person.svg"
+                        src={receiver.imageUrl}
                         alt="alternatetext"
                         width="50" height="50"
                     >
@@ -61,7 +69,7 @@ export default function ChatScreen() {
             </Card>
             <Messages />
 
-            <div className='container'>
+            <div className='textInput'>
                 {/* <form onSubmit={submitMessage}>
                     <input
                         type="text"
@@ -89,6 +97,7 @@ export default function ChatScreen() {
                     Send
                 </button> */}
             </div>
+            <div ref={messagesEndRef} />
 
         </div>
     );

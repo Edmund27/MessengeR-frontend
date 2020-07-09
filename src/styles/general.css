@@ -1,16 +1,24 @@
 .container {
     text-align: center;
+    /* display: inline-block;
+    flex-direction: column;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 100px; */
+  }
+
+  .textInput {
+    text-align: center;
     display: inline-block;
     flex-direction: column;
     margin-left: 50px;
     margin-right: 50px;
     margin-bottom: 100px;
   }
-
   .messageInput {
     position: fixed;
     bottom: 4%;
-    width:80%; 
+    width:95%; 
   }
 
   .nameCard {

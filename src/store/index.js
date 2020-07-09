@@ -6,6 +6,7 @@ import socket from '../socket'
 import { setUser } from "./user/actions"
 import { setUsers } from "./users/actions"
 import { setPastMessages, setChats, setNewMessage } from "./chats/actions"
+import { selectSender } from "./chats/selectors"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -42,7 +43,15 @@ socket.on("pastMessages", response => {
 })
 
 socket.on("incomingMessage", response => {
-    store.dispatch(setNewMessage(response))
+    const openedChatSenderId = store.getState().chats.sender.id;
+    const userId = store.getState().user.id;
+    const emittedMessageSenderId = response.senderId
+    console.log("HHHAHAHAHAAHAHHA", openedChatSenderId, emittedMessageSenderId, userId)
+    if (openedChatSenderId === emittedMessageSenderId || userId === emittedMessageSenderId) {
+        store.dispatch(setNewMessage(response))
+    } else {
+        return
+    }
     //store.dispatch(setUsers(users))
 })
 

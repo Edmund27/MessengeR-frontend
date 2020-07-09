@@ -19,6 +19,7 @@
     font-size: 0.4rem;
     color: black;
     margin-bottom: 2px;
+    float:left
   }
 
 .message.me {

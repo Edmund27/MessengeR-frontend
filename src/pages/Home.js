@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 import socket from '../socket'
 import { selectUsers } from "../store/users/selectors";
 import { selectUser } from "../store/user/selectors";
@@ -45,12 +46,18 @@ export default function Home() {
             {users.map((user) => {
                 return (
                     <div key={user.id}>
-                        <Card style={{ width: '18rem' }}>
+                        <Card style={{ width: '10rem' }}>
                             <Card.Img
+                                //class="img-fluid" 
+                                //class="roundedCircle"
+                                object-fit="cover"
                                 variant="top"
-                                src="https://docs.atlassian.com/aui/8.6.0/docs/images/avatar-person.svg"
-                                width="100" height="100"
+                                src={user.imageUrl}
+                                width="150" height="100"
                             />
+
+                            {/* //<Image src={user.imageUrl} roundedCircle fluid /> */}
+
 
                             <Card.Body>
                                 <Card.Title>{user.name}</Card.Title>

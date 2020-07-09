@@ -8,9 +8,9 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { selectToken } from "./store/user/selectors";
 import { selectEmail } from "./store/user/selectors";
-import socket from './socket'
-import Card from "react-bootstrap/Card";
-import './styles/general.css';
+//import './styles/general.css';
+import MessageBox from "./components/MessageBox";
+import Profile from "./pages/Profile";
 
 
 import Navigation from "./components/Navigation";
@@ -23,9 +23,14 @@ import { getUserWithStoredToken } from "./store/user/actions";
 function App() {
   const token = useSelector(selectToken);
   const email = useSelector(selectEmail)
+  const dispatch = useDispatch();
 
   const history = useHistory();
 
+  useEffect(() => {
+    dispatch(getUserWithStoredToken());
+
+  }, [dispatch]);
 
   useEffect(() => {
     if (token == null) {
@@ -43,14 +48,9 @@ function App() {
         width="190" height="100">
       </img>
     </div>
-  const dispatch = useDispatch();
   const isLoading = useSelector(selectAppLoading);
 
 
-  useEffect(() => {
-    dispatch(getUserWithStoredToken());
-
-  }, [dispatch]);
 
   return (
     <div >
@@ -58,10 +58,12 @@ function App() {
         {loggedIn}
         {loggedOut}
       </div>
+      <MessageBox />
       {/* <Navigation /> */}
       {isLoading ? <Loading /> : null}
       <Switch>
         <Route exact path="/" component={Login} />
+        <Route exact path="/profile" component={Profile} />
         <Route path="/chat-screen" component={ChatScreen} />
         <Route path="/home" component={Home} />
         <Route path="/signup" component={SignUp} />
