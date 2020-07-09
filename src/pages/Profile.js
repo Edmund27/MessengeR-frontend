@@ -16,21 +16,17 @@ export default function Profile() {
     const currentUser = useSelector(selectUser);
     const dispatch = useDispatch();
 
-    console.log("CURRENT USER", currentUser)
-
     const submit = (e) => {
         e.preventDefault()
         if (imageUrl === '' & inputUsername === '') {
             dispatch(showMessageWithTimeout("danger", false, "You did not fill in new username or profile picture Url"))
         } else {
             dispatch(postPicture(imageUrl, inputUsername))
-            console.log("sent", imageUrl, "NAME", inputUsername)
             setImageUrl('')
             setInputUsername('')
             setEditMode(false)
         }
     }
-
     const editingRender =
         <div>
             <Form.Group controlId="formBasicEmail">

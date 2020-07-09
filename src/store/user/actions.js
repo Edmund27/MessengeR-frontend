@@ -29,7 +29,6 @@ export const logOut = () => ({ type: LOG_OUT });
 
 export const signUp = (name, email, password, id) => {
     return async (dispatch, getState) => {
-        console.log("TEST VALUES:", name, email, password, id)
         dispatch(appLoading());
         try {
             const response = await axios.post(`${apiUrl}/signup`, {
@@ -58,13 +57,11 @@ export const signUp = (name, email, password, id) => {
 export const login = (email, password) => {
     return async (dispatch, getState) => {
         dispatch(appLoading());
-        console.log("BEFORE LOGIN")
         try {
             const response = await axios.post(`${apiUrl}/login`, {
                 email,
                 password
             });
-            console.log("SENT LOGIN")
             dispatch(loginSuccess(response.data));
             dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
             dispatch(appDoneLoading());
@@ -83,28 +80,20 @@ export const login = (email, password) => {
 
 export const getUserWithStoredToken = () => {
     return async (dispatch, getState) => {
-        // get token from the state
         const token = selectToken(getState());
 
-        // if we have no token, stop
         if (token === null) {
             return;
         }
 
 
         dispatch(appLoading());
-        //dispatch(clearChat());
         try {
-            // if we do have a token,
-            // check wether it is still valid or if it is expired
             const response = await axios.get(`${apiUrl}/me`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-
-            // token is still valid
             dispatch(tokenStillValid(response.data));
             socket.emit('userLogin', response.data.email)
-            //console.log("IS IT GONNA EMIT?", response.data)
 
             dispatch(appDoneLoading());
         } catch (error) {
@@ -113,8 +102,7 @@ export const getUserWithStoredToken = () => {
             } else {
                 console.log(error);
             }
-            // if we get a 4xx or 5xx response,
-            // get rid of the token by logging out
+
             dispatch(logOut());
             dispatch(appDoneLoading());
         }
@@ -125,7 +113,6 @@ export const postPicture = (imageUrl, name) => async (dispatch, getState) => {
     try {
         dispatch(appLoading());
         const { token, id } = getState().user
-        console.log("POST AUCTION DATA:", imageUrl, name, token, id)
         await axios.patch(`http://localhost:4000/users/${id}`,
             { imageUrl, name },
             {

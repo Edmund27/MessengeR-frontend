@@ -48,10 +48,8 @@ export default function ChatScreen() {
         }
         setMessageInput('')
         socket.emit('newMessage', message);
-        //console.log("EMITTED MESSAGE", message)
     }
 
-    console.log("THIS IS THE RECEVIVER", receiver)
     return (
         <div >
             <Card className="nameCard">
@@ -68,13 +66,6 @@ export default function ChatScreen() {
             <Messages />
 
             <div className='textInput'>
-                {/* <form onSubmit={submitMessage}>
-                    <input
-                        type="text"
-                        value={messageInput}
-                        onChange={event => setMessageInput(event.target.value)}
-                        required />
-                </form > */}
                 <form className="messageInput" onSubmit={submitMessage}>
                     <InputGroup className="mb-3">
                         <FormControl
@@ -91,9 +82,6 @@ export default function ChatScreen() {
                         </InputGroup.Append>
                     </InputGroup>
                 </form>
-                {/* <button onClick={submitMessage} className="Button1" type="button">
-                    Send
-                </button> */}
             </div>
             <div ref={messagesEndRef} />
 

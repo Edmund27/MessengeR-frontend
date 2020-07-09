@@ -28,11 +28,6 @@ export const setSenderName = (senderName) => {
 }
 
 export const setNewMessage = (message) => {
-    //return async (dispatch, getState) => {
-    // get token from the state
-    // const currentSender = selectSender(getState());
-    // console.log("SOCKETIO EMIT MESSAGE", message, "CURRENT SENDER", currentSender)
-    //const messageSender = message.user
     return {
         type: SET_NEW_MESSAGE,
         payload: message

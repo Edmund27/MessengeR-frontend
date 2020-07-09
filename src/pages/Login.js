@@ -26,7 +26,6 @@ export default function SignUp() {
 
 
     function submitForm(event) {
-        //console.log("hi");
         event.preventDefault();
 
         dispatch(login(email, password));

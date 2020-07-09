@@ -11,7 +11,6 @@ export default function Messages() {
     const messages = useSelector(selectMessages);
     const user = useSelector(selectUser)
     const sender = useSelector(selectSender)
-    console.log("SENDER NAME", sender)
     const userId = user.id
     let received = false
     let senderName
@@ -28,7 +27,6 @@ export default function Messages() {
                     received = true
                     senderName = sender.name
                 }
-                //console.log("TIME", message)
                 return (
                     <MessageInstance
                         key={id}
