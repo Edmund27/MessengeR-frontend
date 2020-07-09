@@ -30,13 +30,16 @@ export default function ChatScreen() {
 
     const submitMessage = (e) => {
         e.preventDefault()
-        const message = {
-            user: user,
-            receiver: receiver,
-            text: messageInput,
+        if (messageInput !== '') {
+            const message = {
+                user: user,
+                receiver: receiver,
+                text: messageInput,
+            }
+
+            setMessageInput('')
+            socket.emit('newMessage', message);
         }
-        setMessageInput('')
-        socket.emit('newMessage', message);
     }
 
     return (
