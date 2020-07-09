@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
 import socket from '../socket'
 import { selectUsers } from "../store/users/selectors";
 import { selectUser } from "../store/user/selectors";

@@ -2,12 +2,10 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { Switch, Route, useHistory } from "react-router-dom";
 import ChatScreen from "./pages/ChatScreen";
-import Loginn from "./pages/Loginn";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { selectToken } from "./store/user/selectors";
-import { selectEmail } from "./store/user/selectors";
 //import './styles/general.css';
 import MessageBox from "./components/MessageBox";
 import Profile from "./pages/Profile";
@@ -22,7 +20,6 @@ import { getUserWithStoredToken } from "./store/user/actions";
 
 function App() {
   const token = useSelector(selectToken);
-  const email = useSelector(selectEmail)
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -45,7 +42,9 @@ function App() {
     <div className="logo">
       <img
         src="https://i.imgur.com/nQpDXxK.png"
-        width="190" height="100">
+        width="190" height="100"
+        alt="MessengeR-logo"
+      >
       </img>
     </div>
   const isLoading = useSelector(selectAppLoading);

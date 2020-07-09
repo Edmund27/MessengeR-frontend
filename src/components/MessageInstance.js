@@ -14,7 +14,8 @@ export default function MessageInstance(props) {
             <div className={`username ${from}`}>
                 <img
                     width="30" height="30"
-                    src={props.imageUrl} />
+                    src={props.imageUrl}
+                    alt="profile" />
                 {/* {props.username} */}
             </div>
             <div className={`message-body ${from}`}>

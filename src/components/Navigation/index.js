@@ -19,7 +19,9 @@ export default function Navigation() {
             <Navbar.Brand as={NavLink} to="/">
                 <img
                     src="https://i.imgur.com/nQpDXxK.png"
-                    width="100" height="100">
+                    width="100" height="100"
+                    alt="MessengeR-logo"
+                >
                 </img>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />

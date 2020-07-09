@@ -3,10 +3,8 @@ import { createStore, applyMiddleware, compose } from "redux";
 import ReduxThunk from "redux-thunk";
 import reducer from "./rootReducer";
 import socket from '../socket'
-import { setUser } from "./user/actions"
 import { setUsers } from "./users/actions"
 import { setPastMessages, setChats, setNewMessage } from "./chats/actions"
-import { selectSender } from "./chats/selectors"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,7 +14,7 @@ const store = createStore(reducer, enhancer);
 
 socket.on("userCreated", response => {
     console.log("RESPONSE:", response)
-    const { user, users } = response
+    const { users } = response
     //store.dispatch(setUser(user))
     store.dispatch(setUsers(users))
     //store.dispatch(setUsers(users))

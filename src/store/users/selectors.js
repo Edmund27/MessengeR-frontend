@@ -3,5 +3,5 @@ export const selectUsers = state => (
 )
 
 export const selectUserByName = (state, username) => (
-    state.users.find(user => user.name == username)
+    state.users.find(user => user.name === username)
 )

@@ -5,8 +5,7 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { Col } from "react-bootstrap";
 import { postPicture } from "../store/user/actions"
-import { clearMessage, showMessageWithTimeout, setMessage, } from "../store/appState/actions"
-import Card from "react-bootstrap/Card";
+import { showMessageWithTimeout } from "../store/appState/actions"
 import { selectUser } from "../store/user/selectors";
 
 
