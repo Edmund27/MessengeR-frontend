@@ -22,7 +22,7 @@
   }
 
   .nameCard {
-    position: fixed;
+    /* position: fixed; */
     top: 4%;
     width:100%; 
   }
