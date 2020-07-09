@@ -113,7 +113,7 @@ export const postPicture = (imageUrl, name) => async (dispatch, getState) => {
     try {
         dispatch(appLoading());
         const { token, id } = getState().user
-        await axios.patch(`http://localhost:4000/users/${id}`,
+        await axios.patch(`${apiUrl}/users/${id}`,
             { imageUrl, name },
             {
                 headers: {
