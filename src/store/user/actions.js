@@ -28,15 +28,16 @@ const tokenStillValid = userWithoutToken => ({
 
 export const logOut = () => ({ type: LOG_OUT });
 
-export const signUp = (name, email, password) => {
+export const signUp = (name, email, password, id) => {
     return async (dispatch, getState) => {
-        console.log("TEST VALUES:", name, email, password)
+        console.log("TEST VALUES:", name, email, password, id)
         dispatch(appLoading());
         try {
             const response = await axios.post(`${apiUrl}/signup`, {
                 name,
                 email,
                 password,
+                id
             });
 
             dispatch(loginSuccess(response.data));
@@ -93,7 +94,7 @@ export const getUserWithStoredToken = () => {
 
 
         dispatch(appLoading());
-        dispatch(clearChat());
+        //dispatch(clearChat());
         try {
             // if we do have a token,
             // check wether it is still valid or if it is expired
@@ -120,3 +121,24 @@ export const getUserWithStoredToken = () => {
         }
     };
 };
+
+export const postPicture = (imageUrl, name) => async (dispatch, getState) => {
+    try {
+        dispatch(appLoading());
+        const { token, id } = getState().user
+        console.log("POST AUCTION DATA:", imageUrl, name, token, id)
+        await axios.patch(`http://localhost:4000/users/${id}`,
+            { imageUrl, name },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
+        dispatch(showMessageWithTimeout(setMessage("Success", false, "SUCCESS")))
+        dispatch(getUserWithStoredToken());
+        dispatch(appDoneLoading());
+    } catch (e) {
+        console.log(e)
+    }
+}

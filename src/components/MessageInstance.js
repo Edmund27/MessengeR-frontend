@@ -12,7 +12,10 @@ export default function MessageInstance(props) {
     return (
         <div className={`message ${from}`}>
             <div className={`username ${from}`}>
-                {props.username}
+                <img
+                    width="30" height="30"
+                    src={props.imageUrl} />
+                {/* {props.username} */}
             </div>
             <div className={`message-body ${from}`}>
                 {props.message}
