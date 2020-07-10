@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+Hey, I'm Edmund and I'm happy to introduce my portfolio project app MessengeR. As the name suggest, this application is a real time private messenger. So far it only includes the basic features such as, real time messaging through sockets as well as configuring your profile.
 
-## Available Scripts
+The deployed version can be found [here](https://react-messenger.netlify.app/)
 
-In the project directory, you can run:
+### Technologies Used
 
-### `npm start`
+- React
+- Redux
+- Socket.io
+- React Bootstrap
+- Express
+- Rest API
+- Sequelize
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Goals of the project
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Practice full-stack development
+- Usage of what I learned at the Codaisseur the bootcamp (react, redux, sequelize, express, Rest API)
+- Practice learning new technology independently (socket.io)
+- Showcase development approach of using wireframes and user stories
+- Practice disciplined git usage like proper commits & branching.
 
-### `npm test`
+### User Stories
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- As a person who is online all the time, and like to stay in touch with other I would like to use a real time messaging app
+- As a user, I would like to see all available users I can chat with
+- As a user, I would like to see the chat history after I open it
+- As a user, I would like to receive a real time message that displays without the need to reaload the page
+- As a user, I would like to be able to personalize my profile so others see how cool I am by being able to change my username or profile picture
 
-### `npm run build`
+### Server Repository
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For the backend side of the project [Click here](https://github.com/Edmund27/MessengeR-backend)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### How to install this?
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- clone the app
+- cd into your project
+- Install dependencies using `npm install`
+- start development server using `npm run start`
