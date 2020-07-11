@@ -3,7 +3,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import ReduxThunk from "redux-thunk";
 import reducer from "./rootReducer";
 import socket from '../socket'
-import { setUsers } from "./users/actions"
+import { setUsers, setOnlineUsers } from "./users/actions"
 import { setPastMessages, setChats, setNewMessage } from "./chats/actions"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -26,6 +26,12 @@ socket.on("chatsFound", response => {
     const chats = response
     store.dispatch(setChats(chats))
 })
+
+socket.on("updatedOnlineUsers", response => {
+    //console.log("ONLINE USERS OBJECT", response)
+    store.dispatch(setOnlineUsers(response))
+})
+
 
 socket.on("pastMessages", response => {
     store.dispatch(setPastMessages(response))

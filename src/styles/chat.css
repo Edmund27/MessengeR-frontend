@@ -72,3 +72,13 @@
     color: #999;
     margin-bottom: 5px;
   }
+
+  .onlineChat {
+    display: inline-block;
+    color: green;
+  }
+  
+  .offlineChat {
+    display: inline-block;
+    color: red;
+  }
