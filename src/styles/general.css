@@ -8,17 +8,17 @@
   }
 
   .textInput {
-    text-align: center;
     display: inline-block;
     flex-direction: column;
-    margin-left: 50px;
+    justify-content: center;
+    /* margin-left: 30px;
     margin-right: 50px;
-    margin-bottom: 100px;
+    margin-bottom: 100px; */
   }
   .messageInput {
     position: fixed;
-    bottom: 4%;
-    width:95%; 
+    bottom: 0%;
+    width:100%; 
   }
 
   .nameCard {
