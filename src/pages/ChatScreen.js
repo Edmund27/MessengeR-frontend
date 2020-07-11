@@ -8,6 +8,9 @@ import '../styles/chat.css'
 import Messages from "../components/Messages"
 import socket from "../socket"
 
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
+
 
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -17,6 +20,7 @@ import Card from "react-bootstrap/Card";
 
 export default function ChatScreen() {
     const [messageInput, setMessageInput] = useState('')
+    const [showEmojis, setShowEmojis] = useState(false)
     const allMessages = useSelector(selectMessages);
     const user = useSelector(selectUser);
     const receiver = useSelector(selectSender);
@@ -32,10 +36,15 @@ export default function ChatScreen() {
 
     useEffect(scrollToBottom, [allMessages]);
 
+    const addEmoji = e => {
+        let emoji = e.native;
+        setMessageInput(messageInput + emoji)
+        setShowEmojis(false)
+    };
 
     const submitMessage = (e) => {
         e.preventDefault()
-        if (messageInput !== '') {
+        if (messageInput) {
             const message = {
                 user: user,
                 receiver: receiver,
@@ -47,6 +56,8 @@ export default function ChatScreen() {
         }
     }
 
+
+
     return (
         <div >
             <Card className="nameCard">
@@ -55,6 +66,7 @@ export default function ChatScreen() {
                         src={receiver.imageUrl}
                         alt="alternatetext"
                         width="50" height="50"
+                        className="avatar"
                     >
                     </img>
 
@@ -66,8 +78,29 @@ export default function ChatScreen() {
             <Messages />
 
             <div className='textInput'>
+                {/* <span><Picker onSelect={addEmoji} /> </span> */}
                 <form className="messageInput" onSubmit={submitMessage}>
                     <InputGroup className="mb-3">
+                        <InputGroup.Append>
+                            {showEmojis ? (
+                                <div>
+                                    <span style={styles.emojiPicker} >
+                                        {/* ref={el => setEmojiPicker(el)} */}
+                                        <Picker
+                                            onSelect={addEmoji}
+                                            emojiTooltip={true}
+                                            title="MessengeR"
+                                        />
+                                    </span>
+                                    <Button onClick={event => setShowEmojis(false)} variant="secondary">{String.fromCodePoint(0x1f60a)}</Button>
+                                </div>
+                            ) : (
+                                    // <p style={styles.getEmojiButton} onClick={event => setShowEmojis(true)}>
+                                    //     {String.fromCodePoint(0x1f60a)}
+                                    // </p>
+                                    <Button onClick={event => setShowEmojis(true)} variant="primary">{String.fromCodePoint(0x1f60a)}</Button>
+                                )}
+                        </InputGroup.Append>
                         <FormControl
                             type="text"
                             placeholder="Message"
@@ -77,8 +110,9 @@ export default function ChatScreen() {
                             onChange={event => setMessageInput(event.target.value)}
                             required
                         />
+
                         <InputGroup.Append>
-                            <Button onClick={submitMessage} variant="primary">Send</Button>
+                            <Button style={styles.sendButton} onClick={submitMessage} variant="primary">Send</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </form>
@@ -88,3 +122,21 @@ export default function ChatScreen() {
         </div>
     );
 }
+
+
+
+const styles = {
+    getEmojiButton: {
+        cssFloat: "right",
+        border: "none",
+        margin: 0,
+        cursor: "pointer"
+    },
+    emojiPicker: {
+        position: "absolute",
+        bottom: 30,
+        left: 0,
+        cssFloat: "left",
+        // marginLeft: "200px"
+    },
+};

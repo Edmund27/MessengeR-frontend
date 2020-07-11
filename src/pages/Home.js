@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
+import ListGroup from "react-bootstrap/ListGroup";
 import socket from '../socket'
 import { selectUsers, selectOnlineUsers } from "../store/users/selectors";
 import { selectUser } from "../store/user/selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { setSenderName } from "../store/chats/actions";
+import { useHistory } from "react-router-dom";
 require('../styles/general.css');
 
 
@@ -15,10 +15,14 @@ export default function Home() {
     const dispatch = useDispatch();
     const currentUser = useSelector(selectUser);
     const onlineUsers = useSelector(selectOnlineUsers)
+    const history = useHistory()
 
+
+    //const intOnlineUsers = onlineUsers.split(',').map(Number);
     //console.log("ONLINE USERS", onlineUsers)
 
     const openChat = (receiver) => {
+        history.push('/chat-screen')
         const usersObject = {
             user: currentUser,
             receiver: receiver
@@ -27,44 +31,40 @@ export default function Home() {
         dispatch(setSenderName(receiver));
     }
 
+    const homePageRender = <div>
+        <ListGroup >
+            {users.map((user) => {
+                return (
+                    <ListGroup.Item variant="primary" key={user.id} as="li" action onClick={() => openChat(user)}>
+                        <img
+                            className="avatar"
+                            variant="top"
+                            src={user.imageUrl}
+                            width="100" height="60"
+                            alt="profile"
+                        >
+                        </img>
+                        {user.name}
+                        {onlineUsers.map((u) => {
+                            const onlineDot = u === user.id.toString() ?
+                                <Spinner key={u} animation="grow" variant="success" size="sm" /> : null
+                            //<div className="online" key={u}>●</div> : null
+                            return onlineDot
+                        })}
+
+                    </ListGroup.Item>
+                )
+            })}
+        </ListGroup>
+    </div>
+
+
+
 
 
     return (
-        <div
-            className="card-deck"
-            style={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}
-        >
-            {users.map((user) => {
-                return (
-                    <div key={user.id}>
-                        <Card style={{ width: '10rem' }}>
-                            <Card.Img
-                                object-fit="cover"
-                                variant="top"
-                                src={user.imageUrl}
-                                width="150" height="100"
-                            />
-                            <Card.Body>
-                                <Card.Title>{user.name}
-                                    {onlineUsers.map((u) => {
-                                        if (u == user.id) {
-                                            return <div className="online" key={u}>●</div>
-                                        } else {
-                                            //<div className="online" key={u}>●</div>
-                                            return
-                                            //<div className="offline" key={u}>●</div>
-                                        }
-                                    })}
-                                </Card.Title>
-                                <Link to="/chat-screen">
-                                    <Button onClick={() => openChat(user)} variant="primary">Open Chat</Button>
-                                </Link>
-                            </Card.Body>
-
-                        </Card>
-                    </div>
-                )
-            })}
+        <div>
+            {homePageRender}
         </div>
     );
 }
