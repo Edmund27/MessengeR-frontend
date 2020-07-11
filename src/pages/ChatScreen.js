@@ -80,7 +80,16 @@ export default function ChatScreen() {
             <div className='textInput'>
                 {/* <span><Picker onSelect={addEmoji} /> </span> */}
                 <form className="messageInput" onSubmit={submitMessage}>
-                    <InputGroup className="mb-3">
+                    <InputGroup className="mb-1">
+                        <FormControl
+                            type="text"
+                            placeholder="Message"
+                            aria-label="Message"
+                            aria-describedby="basic-addon2"
+                            value={messageInput}
+                            onChange={event => setMessageInput(event.target.value)}
+                            required
+                        />
                         <InputGroup.Append>
                             {showEmojis ? (
                                 <div>
@@ -101,15 +110,6 @@ export default function ChatScreen() {
                                     <Button onClick={event => setShowEmojis(true)} variant="primary">{String.fromCodePoint(0x1f60a)}</Button>
                                 )}
                         </InputGroup.Append>
-                        <FormControl
-                            type="text"
-                            placeholder="Message"
-                            aria-label="Message"
-                            aria-describedby="basic-addon2"
-                            value={messageInput}
-                            onChange={event => setMessageInput(event.target.value)}
-                            required
-                        />
 
                         <InputGroup.Append>
                             <Button style={styles.sendButton} onClick={submitMessage} variant="primary">Send</Button>
@@ -135,8 +135,8 @@ const styles = {
     emojiPicker: {
         position: "absolute",
         bottom: 30,
-        left: 0,
-        cssFloat: "left",
+        right: 0,
+        cssFloat: "right",
         // marginLeft: "200px"
     },
 };
