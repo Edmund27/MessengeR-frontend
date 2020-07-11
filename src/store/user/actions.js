@@ -25,7 +25,23 @@ const tokenStillValid = userWithoutToken => ({
     payload: userWithoutToken
 });
 
-export const logOut = () => ({ type: LOG_OUT });
+
+
+export const logOut = () => {
+    return ({ type: LOG_OUT })
+}
+//     async (dispatch, getState) => {
+//         //const user = getState().user
+//         const user = selectUser(getState());
+//         //socket.emit("disconnect", user)
+//         console.log("USER", user)
+//     }
+// )
+
+// return (
+//     {
+//         type: LOG_OUT
+//     }
 
 export const signUp = (name, email, password, id) => {
     return async (dispatch, getState) => {
@@ -104,6 +120,7 @@ export const getUserWithStoredToken = () => {
             }
 
             dispatch(logOut());
+            dispatch(disconnectSocket())
             dispatch(appDoneLoading());
         }
     };
@@ -126,5 +143,16 @@ export const postPicture = (imageUrl, name) => async (dispatch, getState) => {
         dispatch(appDoneLoading());
     } catch (e) {
         console.log(e)
+    }
+}
+
+export const disconnectSocket = () => {
+    return async () => {
+        socket.disconnect()
+        //     const user = selectUser(getState());
+        //     //socket.disconnect()
+        //     console.log("SOCKET DISCONNECT", user)
+        //     socket.emit('disconnect', user);
+        // }
     }
 }

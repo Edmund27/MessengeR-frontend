@@ -68,3 +68,13 @@
   margin-left: auto;
   margin-right: auto
   }
+
+  .online {
+    float: right;
+    color: green;
+  }
+  
+  .offline {
+    float: right;
+    color: red;
+  }
