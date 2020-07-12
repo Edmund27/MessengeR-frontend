@@ -4,6 +4,7 @@ export const SET_PAST_MESSAGES = 'SET_PAST_MESSAGES';
 export const SET_SENDER_NAME = 'SET_SENDER_NAME';
 export const SET_NEW_MESSAGE = 'SET_NEW_MESSAGE';
 export const CLEAR_CHAT = 'CLEAR_CHAT';
+export const SET_LAST_MESSAGES = 'SET_LAST_MESSAGES';
 
 
 export const setChats = (chats) => {
@@ -16,6 +17,13 @@ export const setChats = (chats) => {
 export const setPastMessages = (messages) => {
     return {
         type: SET_PAST_MESSAGES,
+        payload: messages
+    }
+}
+
+export const setLastMessages = (messages) => {
+    return {
+        type: SET_LAST_MESSAGES,
         payload: messages
     }
 }

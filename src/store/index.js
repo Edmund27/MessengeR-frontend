@@ -3,7 +3,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import ReduxThunk from "redux-thunk";
 import reducer from "./rootReducer";
 import socket from '../socket'
-import { setUsers, setOnlineUsers } from "./users/actions"
+import { setUsers, setOnlineUsers, setLastMessage } from "./users/actions"
 import { setPastMessages, setChats, setNewMessage } from "./chats/actions"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -18,6 +18,7 @@ socket.on("userCreated", response => {
 })
 
 socket.on("usersData", response => {
+    //console.log("THIS IS THE RESPONSE", response)
     store.dispatch(setUsers(response))
 })
 
@@ -41,8 +42,11 @@ socket.on("incomingMessage", response => {
     const openedChatSenderId = store.getState().chats.sender.id;
     const userId = store.getState().user.id;
     const emittedMessageSenderId = response.senderId
+
     if (openedChatSenderId === emittedMessageSenderId || userId === emittedMessageSenderId) {
         store.dispatch(setNewMessage(response))
+        //console.log("incoming message:", response)
+        store.dispatch(setLastMessage(response))
     } else {
         return
     }

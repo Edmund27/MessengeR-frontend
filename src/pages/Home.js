@@ -31,6 +31,8 @@ export default function Home() {
         dispatch(setSenderName(receiver));
     }
 
+    //const lastMessageRender = 
+
     const homePageRender = <div>
         <ListGroup >
             {users.map((user) => {
@@ -51,6 +53,11 @@ export default function Home() {
                             //<div className="online" key={u}>●</div> : null
                             return onlineDot
                         })}
+                        {user.chat.message.length ?
+                            user.id !== user.chat.senderId ?
+                                <div>me: {user.chat.message} </div> :
+                                <div>{user.name}: {user.chat.message} </div> :
+                            <div>click to send you first message...</div>}
 
                     </ListGroup.Item>
                 )
