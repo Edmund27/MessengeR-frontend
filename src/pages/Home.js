@@ -35,7 +35,7 @@ export default function Home() {
 
     const homePageRender = <div>
         <ListGroup >
-            {!users.length ? null : users.map((user) => {
+            {users && (users.map((user) => {
                 return (
                     <ListGroup.Item variant="primary" key={user.id} as="li" action onClick={() => openChat(user)}>
                         <img
@@ -46,6 +46,7 @@ export default function Home() {
                             alt="profile"
                         >
                         </img>
+
                         {user.name}
                         {onlineUsers.map((u) => {
                             const onlineDot = u === user.id.toString() ?
@@ -53,15 +54,15 @@ export default function Home() {
                             //<div className="online" key={u}>●</div> : null
                             return onlineDot
                         })}
-                        {user.chat.message.length ?
+                        {user.chat && (user.chat.message.length ?
                             user.id !== user.chat.senderId ?
                                 <div>me: {user.chat.message} </div> :
                                 <div>{user.name}: {user.chat.message} </div> :
-                            <div>click to send you first message...</div>}
-
+                            <div>click to send you first message...</div>)}
+                        {!user.chat && <div>click to send you first message...</div>}
                     </ListGroup.Item>
                 )
-            })}
+            }))}
         </ListGroup>
     </div>
 
