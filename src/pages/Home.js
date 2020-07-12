@@ -35,7 +35,7 @@ export default function Home() {
 
     const homePageRender = <div>
         <ListGroup >
-            {users.map((user) => {
+            {!users.length ? null : users.map((user) => {
                 return (
                     <ListGroup.Item variant="primary" key={user.id} as="li" action onClick={() => openChat(user)}>
                         <img
