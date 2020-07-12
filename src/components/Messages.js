@@ -19,7 +19,7 @@ export default function Messages() {
 
     return (
         <div className='messages'>
-            {messages.map((message, id) => {
+            {messages ? messages.map((message, id) => {
                 if (userId === message.senderId) {
                     received = false
                     senderName = user.name
@@ -37,7 +37,7 @@ export default function Messages() {
                         received={received}
                     />
                 )
-            })
+            }) : null
             }
         </div>
     );

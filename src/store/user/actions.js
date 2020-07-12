@@ -8,6 +8,7 @@ import {
     setMessage
 } from "../appState/actions";
 import socket from '../../socket'
+import { setLastMessages } from "../chats/actions";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
@@ -79,6 +80,8 @@ export const login = (email, password) => {
                 password
             });
             dispatch(loginSuccess(response.data));
+            //console.log(response.data)
+            dispatch(getChatsWithLastMessages(response.data.id, response.data.token))
             dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
             dispatch(appDoneLoading());
         } catch (error) {
@@ -110,6 +113,7 @@ export const getUserWithStoredToken = () => {
             });
             dispatch(tokenStillValid(response.data));
             socket.emit('userLogin', response.data.email)
+            dispatch(getChatsWithLastMessages(response.data.id, token))
 
             dispatch(appDoneLoading());
         } catch (error) {
@@ -156,3 +160,26 @@ export const disconnectSocket = () => {
         // }
     }
 }
+
+export const getChatsWithLastMessages = (id, token) => {
+    return async (dispatch, getState) => {
+
+        //console.log("ID TOKEN", id, token)
+        dispatch(appLoading());
+        try {
+            const response = await axios.get(`${apiUrl}/users/${id}/chats/messages/last`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            //console.log("RESPONSE", response)
+            dispatch(setLastMessages(response.data))
+            dispatch(appDoneLoading());
+        } catch (error) {
+            if (error.response) {
+                console.log(error.response.message);
+            } else {
+                console.log(error);
+            }
+            dispatch(appDoneLoading());
+        }
+    };
+};
