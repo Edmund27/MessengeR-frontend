@@ -4,7 +4,7 @@ Hey, I'm Edmund and I'm happy to introduce my portfolio project app MessengeR. A
 The deployed version can be found [here](https://react-messenger.netlify.app/)
 
 ### App Preview
-<img src="https://github.com/Edmund27/MessengeR-frontend/tree/development/attachments">
+<img src="/attachments/home-screen.png">
 
 ### Technologies Used
 
