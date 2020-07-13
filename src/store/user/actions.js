@@ -54,6 +54,7 @@ export const signUp = (name, email, password, id) => {
                 id
             });
 
+            socket.emit('userLogin', email)
             dispatch(loginSuccess(response.data));
             dispatch(showMessageWithTimeout("success", true, "account created"));
             dispatch(appDoneLoading());
@@ -78,6 +79,7 @@ export const login = (email, password) => {
                 email,
                 password
             });
+            socket.emit('userLogin', email)
             dispatch(loginSuccess(response.data));
             //console.log(response.data)
             //dispatch(getChatsWithLastMessages(response.data.id, response.data.token))
