@@ -42,11 +42,11 @@ socket.on("incomingMessage", response => {
     const openedChatSenderId = store.getState().chats.sender.id;
     const userId = store.getState().user.id;
     const emittedMessageSenderId = response.senderId
+    store.dispatch(setLastMessage(response))
 
     if (openedChatSenderId === emittedMessageSenderId || userId === emittedMessageSenderId) {
         store.dispatch(setNewMessage(response))
         //console.log("incoming message:", response)
-        store.dispatch(setLastMessage(response))
     } else {
         return
     }
