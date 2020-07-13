@@ -1,7 +1,7 @@
 ## Introduction
 Hey, I'm Edmund and I'm happy to introduce my portfolio project app MessengeR. As the name suggest, this application is a real time private messenger. So far it only includes the basic features such as, real time messaging through sockets as well as configuring your profile.
 
-The deployed version can be found [here](https://react-messenger.netlify.app/)
+The deployed version can be found [here](https://react-messenger.netlify.app/) and 
 For the data-model click [here](https://github.com/Edmund27/MessengeR-frontend/blob/development/attachments/Data_model.png)
 
 ### App Preview
