@@ -3,6 +3,9 @@ Hey, I'm Edmund and I'm happy to introduce my portfolio project app MessengeR. A
 
 The deployed version can be found [here](https://react-messenger.netlify.app/)
 
+### App Preview
+<img src="https://github.com/Edmund27/MessengeR-frontend/tree/development/attachments">
+
 ### Technologies Used
 
 - React
@@ -28,6 +31,8 @@ The deployed version can be found [here](https://react-messenger.netlify.app/)
 - As a user, I would like to see the chat history after I open it
 - As a user, I would like to receive a real time message that displays without the need to reaload the page
 - As a user, I would like to be able to personalize my profile so others see how cool I am by being able to change my username or profile picture
+
+For wireframe click  [here](https://github.com/Edmund27/MessengeR-frontend/blob/development/attachments/wireframe.png)
 
 ### Server Repository
 
