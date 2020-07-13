@@ -7,7 +7,7 @@ import { selectToken } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
-import socket from '../socket'
+//import socket from '../socket'
 
 export default function SignUp() {
     const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ export default function SignUp() {
         event.preventDefault();
 
         dispatch(login(email, password));
-        socket.emit('userLogin', email)
+        //socket.emit('userLogin', email)
 
         setEmail("");
         setPassword("");
