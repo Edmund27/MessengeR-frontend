@@ -38,7 +38,7 @@ Chat Screen:
 - As a user, I would like to receive a real time message that displays without the need to reaload the page
 - As a user, I would like to be able to personalize my profile so others see how cool I am by being able to change my username or profile picture
 
-For wireframe click  [here](https://github.com/Edmund27/MessengeR-frontend/blob/development/attachments/wireframe.png)
+For the wireframe click [here](https://github.com/Edmund27/MessengeR-frontend/blob/development/attachments/wireframe.png)
 
 ### Server Repository
 
