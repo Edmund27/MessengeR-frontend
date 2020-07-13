@@ -4,7 +4,12 @@ Hey, I'm Edmund and I'm happy to introduce my portfolio project app MessengeR. A
 The deployed version can be found [here](https://react-messenger.netlify.app/)
 
 ### App Preview
+
+Home Screen:
 <img src="/attachments/home-screen.png">
+
+Chat Screen:
+<img src="/attachments/chat-screen.png">
 
 ### Technologies Used
 
